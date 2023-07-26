@@ -1,6 +1,7 @@
 export const initialState = {
   basket: [],
   user: null,
+  keyword: "",
 };
 
 export const getBasketTotal = (basket) =>
@@ -25,8 +26,9 @@ function reducer(state, action) {
           `Cant remove product (id: ${action.id}) as its not in basket!`
         );
       }
-
       return { ...state, basket: newBasket };
+    case "UPDATE_KEYWORD":
+      return { ...state, keyword: action.keyword === "All Items" ? "" : action.keyword};
     default:
       return state;
   }

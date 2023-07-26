@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import "./Header.css";
 import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
@@ -6,13 +7,29 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { useStateValue } from "./StateProvider";
 
 function Header() {
-  const[{ basket }] = useStateValue();
+  const [{ basket }, dispatch] = useStateValue();
+  const [typedWord, setTypedWord] = useState("");
+  const { pathname } = useLocation();
 
-  console.log(basket);
+  const updateTypedWord = (event) => {
+    const newTypedWord = event.target.value;
+    setTypedWord(newTypedWord);
+  }
+
+  const updateKeyword = () => {
+    dispatch({
+      type: "UPDATE_KEYWORD",
+      keyword: typedWord
+    })
+  }
+  
+  useEffect(() => {
+    if (pathname !== '/searchResult') {
+      setTypedWord("")
+    }
+  }, [pathname])
   
   return (
-    
-
     <nav className="header">
       {/* logo ---> image */}
       <Link to="/">
@@ -28,8 +45,12 @@ function Header() {
           type="text"
           className="header__searchInput"
           placeholder="search for item"
+          value={typedWord}
+          onChange={updateTypedWord}
         />
-        <SearchIcon className="header__searchIcon" />
+        <Link to="/searchResult" onClick={updateKeyword}>
+          <SearchIcon className="header__searchIcon" />
+        </Link>
       </div>
       {/* 3 links */}
       <div className="header__nav">
@@ -63,7 +84,9 @@ function Header() {
             {/* shopping basket */}
             <ShoppingBasketIcon />
             {/* number of items */}
-            <span className="header__optionLineTwo header__basketCount">{basket?.length}</span>
+            <span className="header__optionLineTwo header__basketCount">
+              {basket?.length}
+            </span>
           </div>
         </Link>
       </div>
