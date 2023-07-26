@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
@@ -7,28 +7,28 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { useStateValue } from "./StateProvider";
 
 function Header() {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket, keyword }, dispatch] = useStateValue();
   const [typedWord, setTypedWord] = useState("");
   const { pathname } = useLocation();
 
   const updateTypedWord = (event) => {
     const newTypedWord = event.target.value;
     setTypedWord(newTypedWord);
-  }
+  };
 
   const updateKeyword = () => {
     dispatch({
       type: "UPDATE_KEYWORD",
-      keyword: typedWord
-    })
-  }
-  
+      keyword: typedWord,
+    });
+  };
+
   useEffect(() => {
-    if (pathname !== '/searchResult') {
-      setTypedWord("")
+    if (pathname !== "/searchResult") {
+      setTypedWord("");
     }
-  }, [pathname])
-  
+  }, [pathname]);
+
   return (
     <nav className="header">
       {/* logo ---> image */}
