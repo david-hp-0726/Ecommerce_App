@@ -5,13 +5,12 @@ export const initialState = {
     {
       id: "001",
       user: "David",
-      date: "April 18, 2022",
-      total: 999.99,
+      date: "July 26, 2004",
+      total: 9999.99,
       items: [
         {
           id: "12321341",
-          title:
-            "The Lean Startup: How Constant Innovation Creates Radically Successful Businesses Paperback",
+          title: "YOU DID NOT ORDER THIS",
           price: 11.96,
           rating: 5,
           image:
@@ -19,34 +18,7 @@ export const initialState = {
         },
         {
           id: "49538094",
-          title:
-            "Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer with K-beater, Dough Hook and Whisk, 5 Litre Glass Bowl",
-          price: 239.0,
-          rating: 4,
-          image:
-            "https://images-na.ssl-images-amazon.com/images/I/81O%2BGNdkzKL._AC_SX450_.jpg",
-        },
-      ],
-    },
-    {
-      id: "002",
-      user: "David",
-      date: "April 18, 2022",
-      total: 999.99,
-      items: [
-        {
-          id: "12321341",
-          title:
-            "The Lean Startup: How Constant Innovation Creates Radically Successful Businesses Paperback",
-          price: 11.96,
-          rating: 5,
-          image:
-            "https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._SX325_BO1,204,203,200_.jpg",
-        },
-        {
-          id: "49538094",
-          title:
-            "Kenwood kMix Stand Mixer for Baking, Stylish Kitchen Mixer with K-beater, Dough Hook and Whisk, 5 Litre Glass Bowl",
+          title: "THIS ORDER IS HERE FOR DISPLAY",
           price: 239.0,
           rating: 4,
           image:
