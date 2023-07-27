@@ -4,6 +4,8 @@ import Header from "./Header";
 import Home from "./Home";
 import Checkout from "./Checkout";
 import SearchResult from "./SearchResult";
+import Orders from "./Orders";
+import PurchaseSuccess from "./PurchaseSuccess";
 
 function App() {
   return (
@@ -37,6 +39,24 @@ function App() {
                 <SearchResult />
               </>
             }
+          />
+          <Route
+            path="/orders"
+            element={
+              <>
+                <Header />
+                <Orders />
+              </>
+            }
+          />
+          <Route
+          path="/purchaseSuccess"
+          element={
+            <>
+              <Header />
+              <PurchaseSuccess />
+            </>
+          }
           />
         </Routes>
       </div>

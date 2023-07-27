@@ -1,0 +1,103 @@
+.orders {
+  background: white;
+  padding-top: 10px;
+  padding-bottom: 300px;
+}
+
+.orders__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.orders__singleOrder {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.orders__orderInfo {
+  display: grid;
+  column-gap: 0px;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: #EFF2F2;
+  padding: 15px;
+  border: #9ca0a0 0.5px solid;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #585B5B;
+  font-size: 12px;
+}
+
+.orders__orderItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  border: #9ca0a0 0.5px solid;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background: white;
+}
+
+.orders__itemContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.orders__itemImage {
+  height: 90px;
+  width: 90px;
+  object-fit: contain;
+}
+
+.orders__itemInfo {
+  width: 600px;
+  font-size: 13px;
+}
+
+.orders__supportButton {
+  width: 218px;
+  height: 29px;
+  background: #ffd712;
+  border: 0px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+
+.orders__supportButton:hover {
+  background: #ddba0d;
+}
+
+.orders__buttons {
+  text-align: center;
+}
+.orders__reviewButton {
+  width: 218px;
+  height: 29px;
+  background: white;
+  border: #9ca0a0 0.5px solid;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+
+.orders__reviewButton:hover {
+  background: rgb(184, 182, 182);
+}
+
+.orders__itemTitle {
+  color: #017185;
+  margin-bottom: 5px;
+}
+
+.orders__itemTitle:hover {
+  color: #195c6d;
+  text-decoration: underline;
+}
+
+@media only screen and (min-width: 1300px) {
+  .orders {
+    padding-left: 250px;
+    padding-right: 250px;
+  }
+}

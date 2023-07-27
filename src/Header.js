@@ -47,7 +47,7 @@ function Header() {
         <input
           type="text"
           className="header__searchInput"
-          placeholder="search for item"
+          placeholder="search for items"
           value={typedWord}
           onChange={updateTypedWord}
         />
@@ -66,7 +66,7 @@ function Header() {
         </Link>
 
         {/* 2nd link */}
-        <Link to="/" className="header__link">
+        <Link to="/orders" className="header__link">
           <div className="header__option">
             <span className="header__optionLineOne">Returns</span>
             <span className="header__optionLineTwo">& Orders</span>

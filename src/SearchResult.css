@@ -1,8 +1,9 @@
 .searchResult {
-  margin-left: 20px;
-  margin-right: 40px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 40px;
+  padding-top: 20px;
+  padding-bottom: 100px;
+  background: white;
 }
 
 .searchResult__items {
@@ -86,16 +87,13 @@
 
 @media only screen and (min-width: 1300px) {
   .searchResult {
-    margin-left: 100px;
-    margin-right: 100px;
+    padding-left: 100px;
+    padding-right: 100px;
   }
   .searchResult__items {
     gap: 30px;
   }
   .searchResult__itemTitle {
     margin-bottom: 1px;
-  }
-  .searchResult__itemRating {
-    margin-top: 5px;
   }
 }

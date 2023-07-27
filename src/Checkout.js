@@ -3,10 +3,10 @@ import "./Checkout.css";
 import { useStateValue } from "./StateProvider";
 import CheckoutProduct from "./CheckoutProduct";
 import Subtotal from "./Subtotal";
+import { getBasketTotal } from "./reducer";
 
 function Checkout() {
   const [{ basket }] = useStateValue();
-
   return (
     <div className="checkout">
       <div className="checkout__left">
@@ -17,10 +17,12 @@ function Checkout() {
         />
         {basket?.length === 0 ? (
           <div>
-            <h2>Your Shopping Basket is empty</h2>
+            <h2 className="checkout__emptyReminder">
+              Your Shopping Basket is empty
+            </h2>
             <p>
-              You have nothing in your basket. Click add to basket to add more
-              products!!!
+              You have nothing in your basket. Click "Add to Basket" to add
+              items to basket!
             </p>
           </div>
         ) : (
