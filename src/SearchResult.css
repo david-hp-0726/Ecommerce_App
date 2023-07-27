@@ -13,44 +13,44 @@
 }
 
 .searchResult__noResults {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .searchResult__tryChecking {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .searchResult__suggest {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .searchResult__suggestedKeywords {
-    margin-top: 10px;
-    display: grid; 
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 10px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
 }
 
 .searchResult__lineOne {
-    display: flex;
-    gap: 15px;
-    text-decoration: none;
-    border: #d1cdcd 1px solid;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    padding: 10px;
-    color: black;
+  display: flex;
+  gap: 15px;
+  text-decoration: none;
+  border: #d1cdcd 1px solid;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 10px;
+  color: black;
 }
 
 .searchResult__lineTwo {
-    display: flex;
-    gap: 15px;
-    text-decoration: none;
-    border: #d1cdcd 1px solid;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    padding: 10px;
-    color: black;
+  display: flex;
+  gap: 15px;
+  text-decoration: none;
+  border: #d1cdcd 1px solid;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 10px;
+  color: black;
 }
 
 .searchResult__itemContainer {
@@ -94,5 +94,8 @@
   }
   .searchResult__itemTitle {
     margin-bottom: 1px;
+  }
+  .searchResult__itemRating {
+    margin-top: 5px;
   }
 }
