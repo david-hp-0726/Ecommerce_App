@@ -27,7 +27,10 @@ function Header() {
     if (pathname !== "/searchResult") {
       setTypedWord("");
     }
-  }, [pathname]);
+    if (keyword !== typedWord) {
+      setTypedWord(keyword);
+    }
+  }, [pathname, keyword]);
 
   return (
     <nav className="header">
