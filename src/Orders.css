@@ -1,7 +1,8 @@
 .orders {
   background: white;
   padding-top: 10px;
-  padding-bottom: 300px;
+  padding-bottom: 50px;
+  min-height: 550px;
 }
 
 .orders__container {
@@ -99,5 +100,6 @@
   .orders {
     padding-left: 250px;
     padding-right: 250px;
+    min-height: 630px;
   }
 }

@@ -8,7 +8,7 @@ import { getBasketTotal } from "./reducer";
 function Checkout() {
   const [{ basket }] = useStateValue();
   return (
-    <div className="checkout">
+    <div className="checkout checkout__minHeight">
       <div className="checkout__left">
         <img
           className="checkout__ad"

@@ -19,3 +19,13 @@
   background-color: white;
   height: max-content;
 }
+
+.checkout__minHeight {
+  min-height: 550px;
+}
+
+@media only screen and (min-width: 1300px) {
+  .checkout__minHeight {
+    min-height: 630px;
+  }
+}
