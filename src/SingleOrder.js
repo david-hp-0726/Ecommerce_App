@@ -9,7 +9,7 @@ function SingleOrder({ order }) {
         <div>TOTAL</div>
         <div>SHIP TO</div>
         <div>{order.date}</div>
-        <div>${order.total}</div>
+        <div>${order.total.toFixed(2)}</div>
         <div>{order.user}</div>
       </div>
       <div className="orders__orderItems">
@@ -29,8 +29,12 @@ function SingleOrder({ order }) {
                 <strong>${item.price}</strong>
               </div>
               <div className="orders__buttons">
-                <button className="orders__supportButton">Get product support</button>
-                <button className="orders__reviewButton">Write a product review</button>
+                <button className="orders__supportButton">
+                  Get product support
+                </button>
+                <button className="orders__reviewButton">
+                  Write a product review
+                </button>
               </div>
             </div>
           );
