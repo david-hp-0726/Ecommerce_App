@@ -1,7 +1,7 @@
 import React from "react";
+import firebase from "firebase/compat/app";
 
 function SingleOrder({ order }) {
-  console.log(order);
   return (
     <div className="orders__singleOrder">
       <div className="orders__orderInfo">
@@ -13,7 +13,7 @@ function SingleOrder({ order }) {
         <div>{order.user}</div>
       </div>
       <div className="orders__orderItems">
-        <h3>Items will never be delivered</h3>
+        <h3>Items will not be delivered</h3>
         {order.items.map((item) => {
           return (
             <div className="orders__itemContainer">

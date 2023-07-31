@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Checkout.css";
-import { useStateValue } from "./StateProvider";
-import CheckoutProduct from "./CheckoutProduct";
-import Subtotal from "./Subtotal";
-import { getBasketTotal } from "./reducer";
+import { useStateValue } from "../StateProvider";
+import CheckoutProduct from "../components/CheckoutProduct";
+import Subtotal from "../components/Subtotal";
 
 function Checkout() {
-  const [{ basket }] = useStateValue();
+  const [{ basket }, dispatch] = useStateValue();
+
+  const getItemsArray = () => {
+    const items = [];
+    for (let index = 0; index < basket.length; index++) {
+      const item = basket[index];
+      items.push(
+        <CheckoutProduct
+          id={item.id}
+          title={item.title}
+          image={item.image}
+          price={item.price}
+          rating={item.rating}
+          itemIndex={index}
+        />
+      );
+    }
+    return items;
+  };
+
   return (
     <div className="checkout checkout__minHeight">
       <div className="checkout__left">
@@ -17,9 +35,7 @@ function Checkout() {
         />
         {basket?.length === 0 ? (
           <div>
-            <h2 className="checkout__emptyReminder">
-              Your Shopping Basket is empty
-            </h2>
+            <h2 className="checkout__emptyReminder">Your Shopping Basket</h2>
             <p>
               You have nothing in your basket. Click "Add to Basket" to add
               items to basket!
@@ -28,15 +44,7 @@ function Checkout() {
         ) : (
           <div>
             <h2>Your Shopping Basket</h2>
-            {basket.map((item) => (
-              <CheckoutProduct
-                id={item.id}
-                title={item.title}
-                image={item.image}
-                price={item.price}
-                rating={item.rating}
-              />
-            ))}
+            {getItemsArray()}
           </div>
         )}
       </div>

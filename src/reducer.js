@@ -1,34 +1,9 @@
 export const initialState = {
   basket: [],
-  nextOrderId: "001",
-  orders: [
-    {
-      id: "001",
-      user: "David",
-      date: "July 26, 2004",
-      total: 9999.99,
-      items: [
-        {
-          id: "12321341",
-          title: "YOU DID NOT ORDER THIS",
-          price: 11.96,
-          rating: 5,
-          image:
-            "https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._SX325_BO1,204,203,200_.jpg",
-        },
-        {
-          id: "49538094",
-          title: "THIS ORDER IS HERE FOR DISPLAY",
-          price: 239.0,
-          rating: 4,
-          image:
-            "https://images-na.ssl-images-amazon.com/images/I/81O%2BGNdkzKL._AC_SX450_.jpg",
-        },
-      ],
-    },
-  ],
-  user: "David",
+  orders: [],
+  user: null,
   keyword: "",
+  lastOrderId: "",
 };
 
 export const getBasketTotal = (basket) =>
@@ -36,6 +11,20 @@ export const getBasketTotal = (basket) =>
 
 function reducer(state, action) {
   switch (action.type) {
+    case "SET_USER":
+      return { ...state, user: action.user };
+    case "SET_BASKET":
+      return { ...state, basket: action.basket };
+    case "SET_ORDERS":
+      return {
+        ...state,
+        orders: action.orders,
+      };
+    case "SET_LAST_ORDER_ID":
+      return {
+        ...state,
+        lastOrderId: action.lastOrderId,
+      };
     case "ADD_TO_BASKET":
       return { ...state, basket: [...state.basket, action.item] };
     case "REMOVE_FROM_BASKET":
@@ -57,13 +46,10 @@ function reducer(state, action) {
     case "UPDATE_KEYWORD":
       return {
         ...state,
-        keyword: action.keyword === "All Items" ? "" : action.keyword,
-      };
-    case "CREATE_ORDER":
-      return {
-        ...state,
-        nextOrderId: action.nextOrderId,
-        orders: [action.order, ...state.orders],
+        keyword:
+          action.keyword.toLowerCase() === "All Items".toLowerCase()
+            ? ""
+            : action.keyword,
       };
     default:
       return state;

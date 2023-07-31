@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./SearchResult.css";
-import { useStateValue } from "./StateProvider";
-import productItems from "./data/productItems";
-import SearchResultProduct from "./SearchResultProduct";
+import { useStateValue } from "../StateProvider";
+import productItems from "../data/productItems";
+import SearchResultProduct from "../components/SearchResultProduct";
 import SearchIcon from "@mui/icons-material/Search";
 
 function SearchResult() {
@@ -84,7 +84,7 @@ function SearchResult() {
         </div>
       ) : (
         <div className="searchResult__found">
-          <h2>Results</h2>
+          <h2>Results for {keyword === "" ? "ALL ITEMS" : keyword}</h2>
           <div className="searchResult__items">
             {filteredItems.map((item) => (
               <SearchResultProduct item={item}></SearchResultProduct>

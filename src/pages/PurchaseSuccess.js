@@ -1,16 +1,19 @@
 import React from "react";
 import "./PurchaseSuccess.css";
-import { useStateValue } from "./StateProvider";
-import { Link } from 'react-router-dom';
+import { useStateValue } from "../StateProvider";
+import { Link } from "react-router-dom";
 
 function PurchaseSuccess() {
-  const [{ user }] = useStateValue();
+  const [{ user, lastOrderId }] = useStateValue();
 
   return (
     <div className="purchaseSuccess">
       <h1>Purchase Success</h1>
+      <h4>Order #{lastOrderId}</h4>
 
-      <h2 className="purchaseSuccess__hello">Hello {user}, </h2>
+      <h2 className="purchaseSuccess__hello">
+        Hello {user ? user.email.split("@")[0] : "Anonymous User"},{" "}
+      </h2>
       <div>
         Thank you for shopping with us. We'd like to let you know that Amazon
         has received your order and is preparing it for shipment. Your estimated

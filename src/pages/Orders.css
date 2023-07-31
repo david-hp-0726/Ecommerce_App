@@ -5,6 +5,10 @@
   min-height: 550px;
 }
 
+.orders > h2 {
+  margin-bottom: 10px;
+}
+
 .orders__container {
   display: flex;
   flex-direction: column;

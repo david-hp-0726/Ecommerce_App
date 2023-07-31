@@ -1,16 +1,34 @@
 import React from "react";
 import "./CheckoutProduct.css";
-import { useStateValue } from "./StateProvider";
+import { useStateValue } from "../StateProvider";
+import { doc, updateDoc, collection } from "firebase/firestore";
+import { db } from "../firebase";
 
-function CheckoutProduct({ id, image, title, price, rating, hideButton }) {
-  const [{ basket }, dispatch] = useStateValue();
+function CheckoutProduct({
+  id,
+  image,
+  title,
+  price,
+  rating,
+  hideButton,
+  itemIndex,
+}) {
+  const [{ user, basket }, dispatch] = useStateValue();
+  const basketCollectionRef = collection(db, "basket");
+  const basketRef = doc(basketCollectionRef, user ? user.uid : "20040726");
 
   const removeFromBasket = () => {
-    // remove the item from the basket
-    dispatch({
-      type: "REMOVE_FROM_BASKET",
-      id: id,
-    });
+    try {
+      const updatedBasketItems = [...basket];
+      updatedBasketItems.splice(itemIndex, 1);
+      updateDoc(basketRef, { items: updatedBasketItems });
+      dispatch({
+        type: "SET_BASKET",
+        basket: updatedBasketItems,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

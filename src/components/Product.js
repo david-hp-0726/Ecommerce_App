@@ -1,23 +1,35 @@
 import React from "react";
 import "./Product.css";
-import { useStateValue } from "./StateProvider";
+import { useStateValue } from "../StateProvider";
+import { doc, collection, updateDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
-
-function Product({id, title, image, price, rating}) {
-
-  const [{ basket }, dispatch] = useStateValue();
+function Product({ id, title, image, price, rating }) {
+  const [{ user, basket }, dispatch] = useStateValue();
+  const basketCollectionRef = collection(db, "basket");
+  const basketRef = doc(basketCollectionRef, user ? user.uid : "20040726");
 
   const addToBasket = () => {
-    dispatch({
-      type: "ADD_TO_BASKET",
-      item: {
+    const updatedBasketItems = [
+      ...basket,
+      {
         id: id,
         title: title,
         image: image,
         price: price,
         rating: rating,
       },
-    });
+    ];
+
+    try {
+      updateDoc(basketRef, { items: updatedBasketItems });
+      dispatch({
+        type: "SET_BASKET",
+        basket: updatedBasketItems,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

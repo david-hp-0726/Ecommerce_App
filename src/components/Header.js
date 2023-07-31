@@ -4,16 +4,19 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
-import { useStateValue } from "./StateProvider";
+import { useStateValue } from "../StateProvider";
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
 
 function Header() {
-  const [{ basket, keyword }, dispatch] = useStateValue();
+  const [{ user, basket, keyword }, dispatch] = useStateValue();
   const [typedWord, setTypedWord] = useState("");
   const { pathname } = useLocation();
 
   const updateTypedWord = (event) => {
     const newTypedWord = event.target.value;
     setTypedWord(newTypedWord);
+    window.localStorage.setItem("typedWord", newTypedWord);
   };
 
   const updateKeyword = () => {
@@ -26,11 +29,23 @@ function Header() {
   useEffect(() => {
     if (pathname !== "/searchResult") {
       setTypedWord("");
-    }
-    if (keyword !== typedWord) {
+      window.localStorage.setItem("typedWord", "");
+    } else if (keyword.toLowerCase() === "all items") {
+      setTypedWord("ALL ITEMS");
+      window.localStorage.setItem("typedWord", "ALL ITEMS");
+    } else if (keyword != typedWord) {
       setTypedWord(keyword);
+      window.localStorage.setItem("typedWord", keyword);
     }
   }, [pathname, keyword]);
+
+  useEffect(() => {
+    setTypedWord(window.localStorage.getItem("typedWord"));
+    dispatch({
+      type: "UPDATE_KEYWORD",
+      keyword: window.localStorage.getItem("typedWord"),
+    });
+  }, []);
 
   return (
     <nav className="header">
@@ -58,12 +73,24 @@ function Header() {
       {/* 3 links */}
       <div className="header__nav">
         {/* 1st link */}
-        <Link to="/login" className="header__link">
-          <div className="header__option">
-            <span className="header__optionLineOne">Hello David</span>
-            <span className="header__optionLineTwo">Sign in</span>
-          </div>
-        </Link>
+
+        {user ? (
+          <Link to="/" className="header__link" onClick={() => signOut(auth)}>
+            <div className="header__option">
+              <span className="header__optionLineOne">
+                Hello {user.email.split("@")[0]}
+              </span>
+              <span className="header__optionLineTwo">Sign out</span>
+            </div>
+          </Link>
+        ) : (
+          <Link to="/login" className="header__link">
+            <div className="header__option">
+              <span className="header__optionLineOne">Please</span>
+              <span className="header__optionLineTwo">Sign in</span>
+            </div>
+          </Link>
+        )}
 
         {/* 2nd link */}
         <Link to="/orders" className="header__link">
@@ -74,21 +101,13 @@ function Header() {
         </Link>
 
         {/* 3rd link */}
-        <Link to="/" className="header__link">
-          <div className="header__option">
-            <span className="header__optionLineOne">Your</span>
-            <span className="header__optionLineTwo">Prime</span>
-          </div>
-        </Link>
-
-        {/* 4th link */}
         <Link to="/checkout">
           <div className="header__optionBasket">
             {/* shopping basket */}
             <ShoppingBasketIcon />
             {/* number of items */}
             <span className="header__optionLineTwo header__basketCount">
-              {basket?.length}
+              {basket?.length === 0 ? "" : basket?.length}
             </span>
           </div>
         </Link>
