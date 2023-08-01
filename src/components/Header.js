@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import "./Header.css";
 import { Link } from "react-router-dom";
@@ -12,7 +12,10 @@ function Header() {
   const [{ user, basket, keyword }, dispatch] = useStateValue();
   const [typedWord, setTypedWord] = useState("");
   const { pathname } = useLocation();
+  const [displayDropdown, setDisplayDropdown] = useState(false);
+  let dropdownRef = useRef();
 
+  // Manage search bar
   const updateTypedWord = (event) => {
     const newTypedWord = event.target.value;
     setTypedWord(newTypedWord);
@@ -47,6 +50,19 @@ function Header() {
     });
   }, []);
 
+  // Manage log out button
+  useEffect(() => {
+    let handler = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDisplayDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  });
+
   return (
     <nav className="header">
       {/* logo ---> image */}
@@ -75,14 +91,34 @@ function Header() {
         {/* 1st link */}
 
         {user ? (
-          <Link to="/" className="header__link" onClick={() => signOut(auth)}>
-            <div className="header__option">
-              <span className="header__optionLineOne">
-                Hello {user.email.split("@")[0]}
-              </span>
-              <span className="header__optionLineTwo">Sign out</span>
-            </div>
-          </Link>
+          <div className="dropdown">
+            <Link className="header__link" ref={dropdownRef}>
+              <div className="header__option">
+                <span className="header__optionLineOne defaultCursor">
+                  Hello {user.email.split("@")[0]}
+                </span>
+                <span
+                  className="header__optionLineTwo"
+                  onClick={() => setDisplayDropdown(true)}
+                >
+                  Sign out
+                </span>
+              </div>
+              <i class={`arrow ${displayDropdown ? "display" : ""}`}></i>
+              <div
+                className={`dropdown-content defaultCursor ${
+                  displayDropdown ? "display" : ""
+                }`}
+              >
+                <button
+                  className="dropdown-button"
+                  onClick={() => signOut(auth)}
+                >
+                  sign out
+                </button>
+              </div>
+            </Link>
+          </div>
         ) : (
           <Link to="/login" className="header__link">
             <div className="header__option">
@@ -107,7 +143,7 @@ function Header() {
             <ShoppingBasketIcon />
             {/* number of items */}
             <span className="header__optionLineTwo header__basketCount">
-              {basket?.length === 0 ? "" : basket?.length}
+              {basket?.length === 0 ? " " : basket?.length}
             </span>
           </div>
         </Link>
