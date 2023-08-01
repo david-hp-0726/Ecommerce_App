@@ -13,13 +13,14 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  min-width: 730px;
+  min-width: 600px;
 }
 
 .header__optionBasket {
   display: flex;
   color: white;
   align-items: center;
+  margin-left: 10px;
 }
 
 .header__basketCount {
