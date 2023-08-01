@@ -80,6 +80,7 @@
 .dropdown-content {
   visibility: hidden;
   position: absolute;
+  left: 10px;
   top: calc(100% + 0.8rem);
   background: white;
   border-radius: 3px;
@@ -100,7 +101,7 @@
 .arrow {
   visibility: hidden;
   background: white;
-  left: 55px;
+  left: 60px;
   top: calc(100% + 0.55rem);
   position: absolute;
   border: solid white;
