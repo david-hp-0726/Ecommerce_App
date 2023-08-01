@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Amazon Mock-up
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To access the website use this [link](https://david-amazon-mockup.netlify.app/).
 
 ## Available Scripts
 
