@@ -11,7 +11,6 @@ function Product({ id, title, image, price, rating }) {
 
   const addToBasket = () => {
     const updatedBasketItems = [
-      ...basket,
       {
         id: id,
         title: title,
@@ -19,6 +18,7 @@ function Product({ id, title, image, price, rating }) {
         price: price,
         rating: rating,
       },
+      ...basket,
     ];
 
     try {
@@ -28,7 +28,7 @@ function Product({ id, title, image, price, rating }) {
         basket: updatedBasketItems,
       });
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 

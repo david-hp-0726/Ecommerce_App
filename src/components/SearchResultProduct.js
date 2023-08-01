@@ -1,8 +1,34 @@
 import React from "react";
 import { useStateValue } from "../StateProvider";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 function SearchResultProduct({ item }) {
-  const [{}, dispatch] = useStateValue();
+  const [{ user, basket }, dispatch] = useStateValue();
+  const basketRef = doc(db, "basket", user ? user.uid : "20040726");
+
+  const addToBasket = () => {
+    const updatedBasketItems = [
+      {
+        id: item.id,
+        title: item.title,
+        image: item.image,
+        price: item.price,
+        rating: item.rating,
+      },
+      ...basket,
+    ];
+
+    try {
+      updateDoc(basketRef, { items: updatedBasketItems });
+      dispatch({
+        type: "SET_BASKET",
+        basket: updatedBasketItems,
+      });
+    } catch (error) {
+      alert(error);
+    }
+  };
   return (
     <div className="searchResult__itemContainer">
       <img
@@ -24,16 +50,7 @@ function SearchResultProduct({ item }) {
             })}
         </div>
       </div>
-      <button
-        onClick={() => {
-          dispatch({
-            type: "ADD_TO_BASKET",
-            item: item,
-          });
-        }}
-      >
-        Add to Basket
-      </button>
+      <button onClick={addToBasket}>Add to Basket</button>
     </div>
   );
 }

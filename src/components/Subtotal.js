@@ -43,7 +43,6 @@ function Subtotal() {
     const dateString = getDateString();
     const randomId = getRandomId();
     const updatedAllOrders = [
-      ...orders,
       {
         id: randomId,
         user: "xche653",
@@ -51,6 +50,7 @@ function Subtotal() {
         total: getBasketTotal(basket),
         items: [...basket],
       },
+      ...orders,
     ];
     updateDoc(ordersRef, { allOrders: updatedAllOrders });
     updateDoc(basketRef, { items: [] });
