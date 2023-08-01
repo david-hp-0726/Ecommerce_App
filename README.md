@@ -1,4 +1,4 @@
-# Mock-up Amazon
+# Amazon Mock-up
 
 To access the website use this [link](https://david-amazon-mockup.netlify.app/).
 
