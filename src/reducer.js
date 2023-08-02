@@ -4,6 +4,7 @@ export const initialState = {
   user: null,
   keyword: "",
   lastOrderId: "",
+  warningDisplay: false,
 };
 
 export const getBasketTotal = (basket) =>
@@ -11,6 +12,10 @@ export const getBasketTotal = (basket) =>
 
 function reducer(state, action) {
   switch (action.type) {
+    case "SET_WARNING_DISPLAY_TRUE":
+      return { ...state, warningDisplay: true };
+    case "SET_WARNING_DISPLAY_FALSE":
+      return { ...state, warningDisplay: false };
     case "SET_USER":
       return { ...state, user: action.user };
     case "SET_BASKET":

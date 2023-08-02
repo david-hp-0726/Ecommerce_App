@@ -17,7 +17,6 @@ function App() {
   // Set User
   useEffect(() => {
     // will only run once when the app component loads...
-
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         // the user just logged in / the user was logged in
@@ -27,6 +26,7 @@ function App() {
         });
       } else {
         // the user is logged out
+        dispatch({ type: "SET_WARNING_DISPLAY_TRUE" });
         dispatch({
           type: "SET_USER",
           user: null,

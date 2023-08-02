@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Home.css";
 import Product from "../components/Product";
 import backgroundImage from "../static/background.jpeg";
 import CancelIcon from "@mui/icons-material/Cancel";
+import {useStateValue} from "../StateProvider";
 
 function Home() {
-  const [displayWarning, setDisplayWarning] = useState(true);
+  const [{ warningDisplay }, dispatch] = useStateValue();
 
   return (
     <div className="home">
       <div>
         <img className="home__image" src={backgroundImage} alt="" />
-        <div className={`warning ${displayWarning ? "display" : ""}`}>
+        <div className={`warning ${warningDisplay ? "display" : ""}`}>
           <button
             className="warning__cancelButton"
-            onClick={() => setDisplayWarning(false)}
+            onClick={() => dispatch({ type: "SET_WARNING_DISPLAY_FALSE" })}
           >
             <CancelIcon />
           </button>
