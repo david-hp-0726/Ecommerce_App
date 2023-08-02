@@ -1,16 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Home.css";
 import Product from "../components/Product";
+import backgroundImage from "../static/background.jpeg";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 function Home() {
+  const [displayWarning, setDisplayWarning] = useState(true);
+
   return (
     <div className="home">
-      <img
-        className="home__image"
-        src="https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg"
-        alt=""
-      />
-
+      <div>
+        <img className="home__image" src={backgroundImage} alt="" />
+        <div className={`warning ${displayWarning ? "display" : ""}`}>
+          <button
+            className="warning__cancelButton"
+            onClick={() => setDisplayWarning(false)}
+          >
+            <CancelIcon />
+          </button>
+          <h2>Note</h2>
+          <p>
+            This website is a student project. You will not be able to make any
+            purchases. For security purposes, it is recommended you register
+            with a fake email or explore the website without an account.
+          </p>
+        </div>
+      </div>
       <div className="home__row">
         <Product
           id="12321341"

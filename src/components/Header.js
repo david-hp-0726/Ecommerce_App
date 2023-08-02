@@ -7,6 +7,7 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { useStateValue } from "../StateProvider";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
+import chentechLogo from "../static/chentech.png";
 
 function Header() {
   const [{ user, basket, keyword }, dispatch] = useStateValue();
@@ -66,13 +67,11 @@ function Header() {
   return (
     <nav className="header">
       {/* logo ---> image */}
-      <Link to="/">
-        <img
-          className="header__logo"
-          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
-          alt=""
-        />
-      </Link>
+      <div className="header__logoContainer">
+        <Link to="/" className="header__logoContainer">
+          <img className="header__logo" src={chentechLogo} alt="" />
+        </Link>
+      </div>
       {/* search bar */}
       <div className="header__search">
         <input
