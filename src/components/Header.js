@@ -65,7 +65,7 @@ function Header() {
   });
 
   return (
-    <nav className="header">
+    <nav className="header minWidth">
       {/* logo ---> image */}
       <div className="header__logoContainer">
         <Link to="/" className="header__logoContainer">
